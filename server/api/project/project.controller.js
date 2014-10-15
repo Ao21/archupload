@@ -47,6 +47,7 @@ exports.create = function(req, res) {
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
+  console.log(req.body);
   if(req.body._id) { delete req.body._id; }
   Project.findById(req.params.id, function (err, project) {
     if (err) { return handleError(res, err); }
@@ -72,5 +73,6 @@ exports.destroy = function(req, res) {
 };
 
 function handleError(res, err) {
+  console.log(err);
   return res.send(500, err);
 }
