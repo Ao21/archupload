@@ -8,6 +8,7 @@ var ProjectSchema = new Schema({
   studio: String,
   summary: String,
   detail: String,
+  author: {type: Schema.Types.ObjectId, ref: 'Unikey' } ,
   files:[{
   	bucket: String,
   	etag: String,
@@ -17,3 +18,4 @@ var ProjectSchema = new Schema({
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);
+

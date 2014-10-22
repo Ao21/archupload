@@ -1,14 +1,12 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./project.controller');
+var controller = require('./studio.controller');
 
 var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-router.get('/unikey/:unikey', controller.showProjectByUnikey);
-router.get('/studio/:id', controller.showProjectsByStudio);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
