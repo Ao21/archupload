@@ -78,6 +78,7 @@ exports.update = function(req, res) {
     if (req.body._id) {
         delete req.body._id;
     }
+    req.body.author = req.body.author._id;
     Project.findById(req.params.id, function(err, project) {
         if (err) {
             return handleError(res, err);
