@@ -72,6 +72,9 @@ exports.create = function(req, res) {
     });
 };
 
+
+
+
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
     console.log(req.body);
@@ -86,7 +89,11 @@ exports.update = function(req, res) {
         if (!project) {
             return res.send(404);
         }
-        var updated = _.merge(project, req.body);
+
+        var updated = _.merge(project, req.body, function(old, newer){
+              return _.isArray(old) ? newer : undefined;
+            });
+
         updated.save(function(err) {
             if (err) {
                 return handleError(res, err);
