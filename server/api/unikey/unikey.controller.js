@@ -25,6 +25,17 @@ exports.index = function(req, res) {
 
 };
 
+// Get list of Names
+exports.names = function(req, res) {
+    var query = Unikey.find().select('name').exec(function(err, unikeys) {
+        if (err) {
+            return handleError(res, err);
+        }
+        return res.json(200, unikeys);
+    })
+
+};
+
 exports.checkUnikey = function(req, res) {
     console.log(req.body);
     var query = Unikey.findOne({

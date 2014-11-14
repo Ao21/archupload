@@ -9,6 +9,7 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/names', controller.names);
 router.get('/:id', controller.show);
 router.post('/', auth.hasRole('admin'), controller.create);
 router.post('/upload', auth.hasRole('admin'), upload.uploadFromCSV);

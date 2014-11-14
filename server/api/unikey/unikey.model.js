@@ -5,10 +5,12 @@ var mongoose = require('mongoose'),
 
 var UnikeySchema = new Schema({
   name: String,
+  surname: String,
   unikey: String,
   email: String,
   studentNo: String,
   submitted: Boolean,
+  bio: String,
   dateSubmitted: Date,
   files:[{
   	id: String,

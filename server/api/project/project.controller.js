@@ -25,7 +25,8 @@ exports.index = function(req, res) {
 
 // Get list of Users Projects
 exports.showProjectByUnikey = function(req, res) {
-    Project.find(req.params.unikey, function(err, projects) {
+
+    Project.find({author:req.params.unikey}, function(err, projects) {
         if (err) {
             return handleError(res, err);
         }

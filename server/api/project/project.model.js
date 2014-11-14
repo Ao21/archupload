@@ -8,12 +8,18 @@ var ProjectSchema = new Schema({
   studio: String,
   summary: String,
   detail: String,
-  author: {type: Schema.Types.ObjectId, ref: 'Unikey' } ,
+  author: [{type: Schema.Types.ObjectId, ref: 'Unikey' }] ,
   files:[{
   	bucket: String,
   	etag: String,
   	key: String,
   	location: String
+  }],
+  panels:[{
+    bucket: String,
+    etag: String,
+    key: String,
+    location: String
   }]
 });
 
