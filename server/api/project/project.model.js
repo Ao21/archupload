@@ -13,7 +13,8 @@ var ProjectSchema = new Schema({
   	bucket: String,
   	etag: String,
   	key: String,
-  	location: String
+  	location: String,
+    heroImage:{type:Boolean, default:false}
   }],
   panels:[{
     bucket: String,
