@@ -105,6 +105,12 @@ exports.update = function(req, res) {
         delete req.body._id;
     }
     req.body.author = req.body.author._id;
+
+    var authorArray = [];
+    for (var i = req.body.author.length - 1; i >= 0; i--) {
+        authorArray.push(req.body.author[i]._id);
+    };
+    req.body.author = authorArray;
     Project.findById(req.params.id, function(err, project) {
         if (err) {
             return handleError(res, err);
@@ -120,6 +126,9 @@ exports.update = function(req, res) {
         updated.save(function(err) {
             if (err) {
                 return handleError(res, err);
+            }
+            if(project.files.length>0){
+                resizeThumbs(project.files);
             }
             return res.json(200, project);
         });
