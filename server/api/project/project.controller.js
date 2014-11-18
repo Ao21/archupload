@@ -90,7 +90,7 @@ exports.create = function(req, res) {
 
 function resizeThumbs(projectFiles){
     for (var i = projectFiles.length - 1; i >= 0; i--) {
-        client.thumbnail(projectFiles[i].location, [{suffix: 'small', width: 600, height: 600, strategy: 'fill'},{suffix: 'hero', width: 1200, height: 600, strategy: 'fill'}], {
+        client.thumbnail(projectFiles[i].location, [{suffix: 'small', width: 600, height: 600, strategy: 'fill'},{suffix: 'hero', width: 1800, height: 600, strategy: 'fill'}], {
         prefix: projectFiles[i].key // optional prefix for thumbnails created.
     });
         
