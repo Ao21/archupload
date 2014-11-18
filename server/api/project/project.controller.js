@@ -13,6 +13,17 @@ var _ = require('lodash');
 var Project = require('./project.model');
 var StudioCtrl = require('../studio/studio.controller');
 
+
+var Client = require('thumbd').Client,
+    client = new Client({
+        awsKey: 'AKIAIRT6MA7UDDLPWPVA',
+        awsSecret: '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',
+        awsRegion: 'ap-southeast-2',
+        sqsQueue: 'imageResizing',
+        s3Bucket: 'archusyd'
+    });
+
+
 // Get list of things
 exports.index = function(req, res) {
     Project.find(function(err, projects) {
@@ -69,11 +80,22 @@ exports.create = function(req, res) {
         if (err) {
             return handleError(res, err);
         }
+        if(project.files.length>0){
+            resizeThumbs(project.files);
+        }
         return res.json(201, project);
     });
 };
 
 
+function resizeThumbs(projectFiles){
+    for (var i = projectFiles.length - 1; i >= 0; i--) {
+        client.thumbnail(projectFiles[i].location, [{suffix: 'small', width: 600, height: 600, strategy: 'fill'},{suffix: 'hero', width: 1200, height: 600, strategy: 'fill'}], {
+        prefix: projectFiles[i].key // optional prefix for thumbnails created.
+    });
+        
+    };
+}
 
 
 // Updates an existing thing in the DB.
