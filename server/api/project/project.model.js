@@ -8,6 +8,7 @@ var ProjectSchema = new Schema({
   studio: String,
   summary: String,
   detail: String,
+  updated: { type: Date, default: Date.now },
   author: [{type: Schema.Types.ObjectId, ref: 'Unikey' }] ,
   files:[{
   	bucket: String,
