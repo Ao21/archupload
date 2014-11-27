@@ -130,7 +130,6 @@ exports.update = function(req, res) {
                 return handleError(res, err);
             }
             if(project.files.length>0){
-                console.log('hi');
                 resizeThumbs(project.files);
             }
             return res.json(200, project);
