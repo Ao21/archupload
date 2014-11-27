@@ -90,6 +90,7 @@ exports.create = function(req, res) {
 
 function resizeThumbs(projectFiles){
     for (var i = projectFiles.length - 1; i >= 0; i--) {
+        console.log(projectFiles[i]);
         client.thumbnail(projectFiles[i].location, [{suffix: 'small', width: 600, height: 600, strategy: 'fill'},{suffix: 'hero', width: 1800, height: 600, strategy: 'fill'}], {
         prefix: projectFiles[i].key // optional prefix for thumbnails created.
     });
@@ -100,7 +101,6 @@ function resizeThumbs(projectFiles){
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
-    console.log(req.body);
     if (req.body._id) {
         delete req.body._id;
     }
@@ -130,6 +130,7 @@ exports.update = function(req, res) {
                 return handleError(res, err);
             }
             if(project.files.length>0){
+                console.log('hi');
                 resizeThumbs(project.files);
             }
             return res.json(200, project);
