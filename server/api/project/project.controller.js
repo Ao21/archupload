@@ -107,10 +107,12 @@ exports.update = function(req, res) {
     req.body.author = req.body.author._id;
 
     var authorArray = [];
-    for (var i = req.body.author.length - 1; i >= 0; i--) {
-        authorArray.push(req.body.author[i]._id);
-    };
-    req.body.author = authorArray;
+    if(req.body.author instanceof Array){
+        for (var i = req.body.author.length - 1; i >= 0; i--) {
+            authorArray.push(req.body.author[i]._id);
+        };
+        req.body.author = authorArray;
+    }
     Project.findById(req.params.id, function(err, project) {
         if (err) {
             return handleError(res, err);
