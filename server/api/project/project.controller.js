@@ -48,12 +48,18 @@ exports.showProjectByUnikey = function(req, res) {
 // Get list of Users Projects
 exports.showProjectsByStudio = function(req, res) {
     StudioCtrl.getStudio(req.params.id, function(studio) {
+        console.log(studio);
+        if(studio!=null){
         Project.find({'studio': studio.name}).populate('author').exec(function(err, projects){
             if (err) {
                 return handleError(res, err);
             }
             return res.json(200, projects);
         })
+    }
+    else{
+        return res.json(400, 'No Studio Found');
+    }
 
     })
 };

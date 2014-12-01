@@ -51,7 +51,9 @@ exports.update = function(req, res) {
   Studio.findById(req.params.id, function (err, studio) {
     if (err) { return handleError(res, err); }
     if(!studio) { return res.send(404); }
-    var updated = _.merge(studio, req.body);
+   var updated = _.merge(studio, req.body, function(old, newer){
+              return _.isArray(old) ? newer : undefined;
+            });
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, studio);
