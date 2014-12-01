@@ -11,6 +11,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/names', controller.names);
 router.get('/:id', controller.show);
+router.get('/one/:id', auth.hasRole('admin'), controller.getUser);
 router.post('/', auth.hasRole('admin'), controller.create);
 router.post('/upload', auth.hasRole('admin'), upload.uploadFromCSV);
 router.post('/check', controller.checkUnikey);

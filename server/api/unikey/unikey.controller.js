@@ -37,7 +37,6 @@ exports.names = function(req, res) {
 };
 
 exports.checkUnikey = function(req, res) {
-    console.log(req.body);
     var query = Unikey.findOne({
         unikey: req.body.unikey
     }).exec(function(err, unikey) {
@@ -60,6 +59,20 @@ exports.checkUnikey = function(req, res) {
 // Get a single thing
 exports.show = function(req, res) {
     Unikey.findById(req.params.id, function(err, unikey) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!unikey) {
+            return res.send(404);
+        }
+        return res.json(unikey);
+    });
+};
+
+
+// Get a single thing
+exports.getUser = function(req, res) {
+    Unikey.find({studentNo:req.params.id}, function(err, unikey) {
         if (err) {
             return handleError(res, err);
         }
