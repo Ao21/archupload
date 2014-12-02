@@ -94,7 +94,7 @@ exports.create = function(req, res) {
 };
 
 exports.search = function(req,res){
-    var query = Project.find();
+    var query = Project.find({files:{$:not:{$size: 0}}});
     query.select('name studio author');
     query.populate('author');
     query.exec(function(err, projects){
