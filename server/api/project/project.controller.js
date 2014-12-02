@@ -93,6 +93,18 @@ exports.create = function(req, res) {
     });
 };
 
+exports.search = function(req,res){
+    var query = Project.find();
+    query.select('name studio author');
+    query.populate('author');
+    query.exec(function(err, projects){
+          if (err) {
+                return handleError(res, err);
+            }
+            return res.json(200, projects);
+    })
+}
+
 
 function resizeThumbs(projectFiles){
     for (var i = projectFiles.length - 1; i >= 0; i--) {

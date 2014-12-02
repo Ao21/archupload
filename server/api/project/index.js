@@ -6,6 +6,7 @@ var controller = require('./project.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/search', controller.search);
 router.get('/:id', controller.show);
 router.get('/unikey/:unikey', controller.showProjectByUnikey);
 router.get('/studio/:id', controller.showProjectsByStudio);
