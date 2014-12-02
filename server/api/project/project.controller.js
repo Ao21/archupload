@@ -118,10 +118,7 @@ function resizeThumbs(projectFiles){
 
 function resizeHero(projectFiles){
     for (var i = projectFiles.length - 1; i >= 0; i--) {
-        client.thumbnail(projectFiles[i].location, [{suffix: 'standard', width: 1800, strategy: 'bounded'}], {
-        prefix: projectFiles[i].key // optional prefix for thumbnails created.
-    });
-        
+       client.thumbnail(projectFiles[i].location, [{suffix: 'standard', width: 1800, strategy: 'bounded'}], {prefix: projectFiles[i].key});
     };
 }
 
