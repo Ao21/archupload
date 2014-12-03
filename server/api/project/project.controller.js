@@ -109,7 +109,7 @@ exports.search = function(req,res){
 function resizeThumbs(projectFiles){
     for (var i = projectFiles.length - 1; i >= 0; i--) {
         console.log(projectFiles[i]);
-        client.thumbnail(projectFiles[i].location, [{suffix: 'small', width: 1200,  strategy: 'fill'},{suffix: 'hero', width: 1800, height: 600, strategy: 'fill'}], {
+        client.thumbnail(projectFiles[i].location, [{suffix: 'standard', width: 1800, strategy: 'bounded'}],{suffix: 'small', width: 1200,  strategy: 'fill'},{suffix: 'hero', width: 1800, height: 600, strategy: 'fill'}], {
         prefix: projectFiles[i].key // optional prefix for thumbnails created.
     });
         
